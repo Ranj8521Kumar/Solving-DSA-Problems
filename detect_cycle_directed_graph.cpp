@@ -41,6 +41,55 @@ class Solution {
     }
 };
 
+class Solution {
+  public:
+    // Function to detect cycle in a directed graph.
+    bool isCyclic(int V, vector<vector<int>> adj) {
+        // code here
+        
+        //using khan's algorithm or using bfs or using topological sort
+        
+        int v = adj.size();
+        
+        vector<int> indegree(v, 0);
+        
+        for(int u = 0; u<v; u++){
+            for(auto &v: adj[u]){
+                indegree[v]++;
+            }
+        }
+        
+        queue<int> que;
+        for(int u = 0; u<v; u++){
+            if(indegree[u] == 0){
+                que.push(u);
+            }
+        }
+        
+        int count = 0;
+        
+        while(!que.empty()){
+            int u = que.front();
+            que.pop();
+            
+            count++;
+            
+            for(auto &v: adj[u]){
+                indegree[v]--;
+                if(indegree[v] == 0){
+                    que.push(v);
+                }
+            }
+        }
+        
+        if(count !=  v){ //if topological sort is not possible means no of element in topological sort in not equa to total number of vertices, then cycle is present
+            return true;
+        }
+        
+        return false;
+    }
+};
+
 int main(){
     Solution obj;
     vector<vector<int>> adj = {{1, 2}, {2}, {0}};
