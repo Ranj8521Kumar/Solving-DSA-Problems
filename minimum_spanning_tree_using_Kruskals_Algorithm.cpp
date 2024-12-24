@@ -33,7 +33,8 @@ public:
 
     // Function to find sum of weights of edges of the Minimum Spanning Tree.
     int spanningTree(int v, vector<vector<int>> adjMatrix[]) {
-        vector<vector<int>> adj;
+        vector<vector<int>> adj; //vector of edges alogn with their weights
+        //calculate the edges along with their weights means claculate the adj
         for (int node = 0; node < v; node++) {
             for (auto& u : adjMatrix[node]) {
                 int v = u[0];
