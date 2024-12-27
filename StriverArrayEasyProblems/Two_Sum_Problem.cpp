@@ -81,6 +81,26 @@ vector<int> twoSum(vector<int>& nums, int target) {
         return {-1, -1};
     }
 
+//second type of optimal approach
+class Solution {
+  public:
+    bool twoSum(vector<int>& arr, int target) {
+        // code here
+        int n = arr.size();
+        unordered_map<int, int> mpp;
+        
+        for(int i  = 0; i<n; i++){
+            int diff = target - arr[i];
+            if(mpp[diff] >= 1){
+                return true;
+            }
+            
+            mpp[arr[i]]++;
+        }
+        
+        return false;
+    }
+};
 
 int main()
 {
